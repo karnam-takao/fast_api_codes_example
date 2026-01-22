@@ -6,7 +6,9 @@ class PacktBook(BaseModel):
     publishers:str
     isbn:str
     
-    
+class Item(BaseModel):
+    id:int
+    status:bool   
 
 class Todo(BaseModel):
     id:int
