@@ -1,2 +1,4 @@
 venv/
 .env
+./cha1/__pycache__/
+.vscode/
