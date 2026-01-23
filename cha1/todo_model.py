@@ -6,9 +6,15 @@ class PacktBook(BaseModel):
     publishers:str
     isbn:str
     
-class Item(BaseModel):
-    id:int
-    status:bool   
+class TodoItem(BaseModel):
+    item:str
+    
+    class Config:
+        schema_extra = {
+            "example": {
+                "item":"read the next few lines"
+            }
+        }  
 
 class Todo(BaseModel):
     id:int
