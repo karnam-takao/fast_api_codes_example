@@ -1,3 +1,10 @@
 IMPORTANT Topics
 
 1)response model field filtering
+2)Pydantic models are used to define schemas for requests and responses
+ ------------------------------------------------------------------------------------------------------------------------------ |
+| `orm_mode = True`                | Allows Pydantic model to read from **ORM objects** (like SQLAlchemy models). Without this, `User.from_orm(db_user)` will fail. |
+| `allow_mutation = False`         | Makes the model **immutable** (cannot change attributes after creation).                                                       |
+| `anystr_strip_whitespace = True` | Automatically trims whitespace from string fields.                                                                             |
+| `use_enum_values = True`         | Serializes Enum fields as their **values** instead of names.                                                                   |
+
