@@ -1,4 +1,4 @@
-from fastapi import APIRouter,Path
+from fastapi import APIRouter,Path,HTTPException,status
 from todo_model import Todo , TodoItem,TodoItems
 
 
@@ -24,12 +24,14 @@ async def update_todo(todo_data : TodoItem, todo_id: int = Path(...,title="id to
             "message":"sucess"
         }
         
-    return{
-        "message":"fail"
-    }
+    raise HTTPException(
+        status_code=status.HTTP_404_NOT_FOUND,
+        detail="todo with that id not found !!"
+    )
+    
 
 
-@todo_router.get("/todo",response_model=TodoItems)
+@todo_router.get("/todo",response_model=TodoItems,status_code=404)
 async def get_todo() -> dict:
     return{"todos":todo_list}
 
@@ -45,9 +47,11 @@ async def delete_single_todo(todo_id:int = Path(...,title="dlete todo id"))-> di
                 "message":"done"
             }
     
-    return{
-        "message":"failed no id"
-    }
+    raise HTTPException(
+        status_code=status.HTTP_404_NOT_FOUND,
+        detail="todo with that id not found !!"
+    )
+    
         
 
 
@@ -60,9 +64,10 @@ async def get_single_todo(todo_id: int = Path(...,title="The ID of the Todo to r
                 "todo":todo
             }
     
-    return {
-        "message":"Todo id does not exist!!!"
-    }
+    raise HTTPException(
+        status_code=status.HTTP_404_NOT_FOUND,
+        detail="todo with that id not found !!"
+    )
     
 
 
